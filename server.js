@@ -74,10 +74,10 @@ app.get('/api/zone/off/:zone', (req, res) => {
 
 app.get('/api/zone/:zone', (req, res) => {
     const { zone } = req.params;
-    res.send(db.get('zones')
+    const { active } = db.get('zones')
         .find({ zone })
         .value()
-    )
+    res.send(active)
 })
 
 app.get('/api/zones', (req, res) => {
