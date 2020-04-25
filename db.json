@@ -1,0 +1,31 @@
+{
+  "zones": [
+    {
+      "zone": "0",
+      "active": false
+    },
+    {
+      "zone": "1",
+      "active": false
+    },
+    {
+      "zone": "2",
+      "active": false
+    },
+    {
+      "zone": "3",
+      "active": false
+    },
+    {
+      "zone": "4",
+      "active": false
+    },
+    {
+      "zone": "5",
+      "active": false
+    }
+  ],
+  "system": {
+    "active": true
+  }
+}
