@@ -47,19 +47,6 @@ db.defaults({
         active: true
     }
 }).write()
-// const gpio = require("gpio");
-// const init = require("raspi");
-// const led = require("raspi-led")
-
-// const ws = new WebSocket('ws://192.168.124.124:9700/');
-
-// ws.on('open', function open() {
-//     console.log("Homebridge connection open.")
-// });
-
-// ws.on('message', function incoming(data) {
-//     console.log(data);
-// });
 
 app.get('/api/zone/on/:zone', (req, res) => {
     const { zone } = req.params;

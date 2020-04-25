@@ -1,27 +1,33 @@
 {
   "zones": [
     {
-      "zone": "0",
-      "active": false
-    },
-    {
+      "name": "Front Yard Center",
       "zone": "1",
       "active": false
     },
     {
+      "name": "Front Yard Right",
       "zone": "2",
       "active": false
     },
     {
+      "name": "Flower Beds",
       "zone": "3",
       "active": false
     },
     {
+      "name": "Backyard",
       "zone": "4",
       "active": false
     },
     {
+      "name": "Backyard Flower Beds",
       "zone": "5",
+      "active": false
+    },
+    {
+      "name": "None",
+      "zone": "6",
       "active": false
     }
   ],
