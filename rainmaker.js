@@ -50,7 +50,7 @@ db.defaults({
 
 app.get('/api/zone/on/:zone', (req, res) => {
     const { zone } = req.params;
-    console.log({zone, route: "/api/zone/on/:zone"})
+    console.log({zone, route: "/api/zone/on/:zone", value: true})
     db.get('zones')
         .find({ zone: zone })
         .assign({ active: true })
@@ -63,7 +63,7 @@ app.get('/api/zone/on/:zone', (req, res) => {
 
 app.get('/api/zone/off/:zone', (req, res) => {
     const { zone } = req.params;
-    console.log({zone, route: "/api/zone/off/:zone"})
+    console.log({zone, route: "/api/zone/off/:zone", value: false})
     db.get('zones')
         .find({ zone: zone })
         .assign({ active: false })
