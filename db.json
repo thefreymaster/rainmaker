@@ -17,8 +17,8 @@
     {
       "name": "Flower Beds",
       "zone": "3",
-      "active": false,
-      "uptime": null,
+      "active": true,
+      "uptime": "2020-04-26T22:57:57.971Z",
       "pictureUrl": ""
     },
     {

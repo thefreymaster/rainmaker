@@ -1,6 +1,6 @@
 const express = require('express');
-const path = require('path');
 const app = express();
+const path = require('path')
 
 const port = 6700;
 const WebSocket = require('ws');
@@ -13,11 +13,7 @@ const db = low(adapter);
 const os = require('os');
 const networkInterfaces = os.networkInterfaces();
 
-var dir = path.join(__dirname, 'public');
-
 app.use(express.json());
-app.use(express.static(dir));
-app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/build'));
 app.use(express.static(__dirname + '/images'));
 
