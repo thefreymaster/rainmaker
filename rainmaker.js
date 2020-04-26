@@ -76,7 +76,6 @@ app.get('/api/zone/off/:zone', (req, res) => {
 
 app.get('/api/zone/:zone', (req, res) => {
     const { zone } = req.params;
-    console.log({zone, route: "/api/zone/:zone"})
     const { active } = db.get('zones')
         .find({ zone })
         .value()
