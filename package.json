@@ -2,7 +2,7 @@
   "name": "rainmaker",
   "version": "1.0.0",
   "description": "Sprinkler system controller",
-  "main": "server.js",
+  "main": "rainmaker.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
