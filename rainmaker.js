@@ -49,8 +49,8 @@ db.defaults({
 }).write()
 
 app.get('/api/zone/on/:zone', (req, res) => {
-    console.log({zone, route: "/api/zone/on/:zone"})
     const { zone } = req.params;
+    console.log({zone, route: "/api/zone/on/:zone"})
     db.get('zones')
         .find({ zone: zone })
         .assign({ active: true })
@@ -62,8 +62,8 @@ app.get('/api/zone/on/:zone', (req, res) => {
 })
 
 app.get('/api/zone/off/:zone', (req, res) => {
-    console.log({zone, route: "/api/zone/off/:zone"})
     const { zone } = req.params;
+    console.log({zone, route: "/api/zone/off/:zone"})
     db.get('zones')
         .find({ zone: zone })
         .assign({ active: false })
@@ -75,8 +75,8 @@ app.get('/api/zone/off/:zone', (req, res) => {
 })
 
 app.get('/api/zone/:zone', (req, res) => {
-    console.log({zone, route: "/api/zone/:zone"})
     const { zone } = req.params;
+    console.log({zone, route: "/api/zone/:zone"})
     const { active } = db.get('zones')
         .find({ zone })
         .value()
@@ -145,4 +145,4 @@ app.get('/api', (req, res) => {
     })
 })
 
-app.listen(port, () => console.log(`Rainmaker running on:${port}`));
+app.listen(port, () => console.log(`Rainmaker running on: ${port}`));
