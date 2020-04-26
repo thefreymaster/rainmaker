@@ -49,6 +49,7 @@ db.defaults({
 }).write()
 
 app.get('/api/zone/on/:zone', (req, res) => {
+    console.log({zone, route: "/api/zone/on/:zone"})
     const { zone } = req.params;
     db.get('zones')
         .find({ zone: zone })
@@ -61,6 +62,7 @@ app.get('/api/zone/on/:zone', (req, res) => {
 })
 
 app.get('/api/zone/off/:zone', (req, res) => {
+    console.log({zone, route: "/api/zone/off/:zone"})
     const { zone } = req.params;
     db.get('zones')
         .find({ zone: zone })
@@ -73,6 +75,7 @@ app.get('/api/zone/off/:zone', (req, res) => {
 })
 
 app.get('/api/zone/:zone', (req, res) => {
+    console.log({zone, route: "/api/zone/:zone"})
     const { zone } = req.params;
     const { active } = db.get('zones')
         .find({ zone })
