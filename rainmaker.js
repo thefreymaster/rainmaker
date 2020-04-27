@@ -3,7 +3,6 @@ const app = express();
 const path = require('path')
 
 const port = 6700;
-const WebSocket = require('ws');
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 
