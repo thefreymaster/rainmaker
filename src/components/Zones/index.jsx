@@ -31,14 +31,14 @@ const Zones = () => {
     }, [])
     if (loading) {
         return (
-            <Loader
-                type="Puff"
-                color="#00BFFF"
-                height={100}
-                width={100}
-                timeout={3000} //3 secs
-
-            />
+            <div style={{
+                minWidth: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
+            }}>
+                <Loader type="Grid" color="#001529" height={80} width={80} />
+            </div>
         )
     }
     return zones.map(zone => {
