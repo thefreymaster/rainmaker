@@ -1,14 +1,32 @@
 import React, { useState, useLayoutEffect } from 'react';
 import { Switch, Card, Avatar } from 'antd';
-import { setZoneOff, setZoneOn, getZoneImage } from '../../api/rest';
-import Zone1 from "../../images/zone_1.jpg";
-import Zone2 from "../../images/zone_2.jpg";
-import Zone3 from "../../images/zone_3.jpg";
-import Zone4 from "../../images/zone_4.jpg";
-import Zone5 from "../../images/zone_5.jpg";
+import { setZoneOff, setZoneOn, getZoneImage, getZones } from '../../api/rest';
+import io from 'socket.io-client';
+import Timer from "react-compound-timer"
+const socket = io('http://localhost:6700');
 
 
-const Zones = ({ zones, setZones }) => {
+const Zones = () => {
+    const [zones, setZones] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+
+    useLayoutEffect(() => {
+        socket.on('connection', (data) => {
+            console.log(data);
+        })
+        socket.on('zones_update', (data) => {
+            console.log(data)
+            setZones(data)
+        })
+        getZones().then(({ data }) => {
+            setZones(data);
+            setLoading(false);
+        })
+    }, [])
+    if (loading) {
+        return "Loading"
+    }
     return zones.map(zone => {
         return <Zone zone={zone} setZones={setZones} />
     })
@@ -18,15 +36,19 @@ const Zone = ({ zone, setZones }) => {
     return (
         <Card key={zone.zone} cover={
             <img
-                style={{ width: (window.innerWidth) / 4 }}
+                style={{
+                    width: (window.innerWidth) / 5,
+                    filter: zone.active ? "grayscale(0)" : "grayscale(1)",
+                    transition: "filter 350ms ease-in-out"
+                }}
                 src={`/api/zone/image/${zone.zone}`}
             />
         }
-            style={{ width: (window.innerWidth) / 4 }}>
+            style={{ width: (window.innerWidth) / 5 }}>
             <Card.Meta
                 avatar={<i class="fas fa-tint"></i>}
                 title={zone.name}
-                description={zone.uptime ? `Running for ${((new Date() - Date.parse(zone.uptime)) / 1000 / 60).toFixed(2)} minutes` : null}
+                description={zone.uptime ? <Time time={zone.uptime} /> : "Not Watering"}
             />
             <br />
             <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center" }}>
@@ -34,6 +56,15 @@ const Zone = ({ zone, setZones }) => {
                 <Action zone={zone} />
             </div>
         </Card>
+    )
+}
+
+const Time = ({ time }) => {
+    return (
+        <Timer
+            initialTime={(new Date() - Date.parse(time))}>
+            <Timer.Minutes />:<Timer.Seconds /> minutes
+        </Timer>
     )
 }
 
