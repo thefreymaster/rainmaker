@@ -10,8 +10,8 @@
     {
       "name": "Front Yard Right",
       "zone": "2",
-      "active": false,
-      "uptime": null,
+      "active": true,
+      "uptime": "2020-04-27T22:17:10.390Z",
       "pictureUrl": ""
     },
     {

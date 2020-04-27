@@ -12,9 +12,6 @@ const Zones = () => {
 
 
     useLayoutEffect(() => {
-        socket.on('connection', (data) => {
-            console.log(data);
-        })
         socket.on('zones_update', (data) => {
             console.log(data)
             setZones(data)
