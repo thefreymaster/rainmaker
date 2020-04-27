@@ -119,7 +119,7 @@ app.get('/api/zone/on/:zone', (req, res) => {
         .assign({ active: true, uptime: new Date() })
         .write()
     // socket.broadcast.emit('zones_update', db.get('zones').value());
-    pins[pin].set(0);
+    pins[zone].set(0);
     res.send(db.get('zones')
         .value()
     )
@@ -133,7 +133,7 @@ app.get('/api/zone/off/:zone', (req, res) => {
         .assign({ active: false, uptime: null })
         .write()
     // socket.broadcast.emit('zones_update', db.get('zones').value());
-    pins[pin].set();
+    pins[zone].set();
     res.send(db.get('zones')
         .value()
     )
