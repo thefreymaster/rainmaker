@@ -21,7 +21,6 @@ const io = require('socket.io')(server);
 
 const gpio = require("gpio");
 
-
 const pinYellow = gpio.export(6, {
     ready: () => {
         setTimeout(() => {
