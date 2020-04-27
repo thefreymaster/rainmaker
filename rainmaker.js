@@ -141,10 +141,10 @@ app.get('/api/zone/off/:zone', (req, res) => {
 
 app.get('/api/zone/:zone', (req, res) => {
     const { zone } = req.params;
-    const { active } = db.get('zones')
+    const zone = db.get('zones')
         .find({ zone })
         .value()
-    res.send(active)
+    res.send(zone.active)
 })
 
 app.get('/api/zones', (req, res) => {
