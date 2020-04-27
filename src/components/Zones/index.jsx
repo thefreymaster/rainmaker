@@ -3,7 +3,7 @@ import { Switch, Card, Avatar } from 'antd';
 import { setZoneOff, setZoneOn, getZoneImage, getZones } from '../../api/rest';
 import io from 'socket.io-client';
 import Timer from "react-compound-timer"
-const socket = io('http://localhost:6700');
+const socket = io('http://192.168.124.12:6700/');
 
 
 const Zones = () => {
