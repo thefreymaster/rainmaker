@@ -20,8 +20,58 @@ app.use(express.static(__dirname + '/images'));
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
-io.on('connection', (socket) => {
+const gpio = require("gpio");
 
+
+const pinYellow = gpio.export(6, {
+    ready: () => {
+        setTimeout(() => {
+            pinYellow.reset();
+        }, 1000);
+    }
+});
+
+const pinRed = gpio.export(16, {
+    ready: () => {
+        setTimeout(() => {
+            pinRed.reset();
+        }, 1000);
+    }
+});
+
+const pinOrange = gpio.export(13, {
+    ready: () => {
+        setTimeout(() => {
+            pinOrange.reset();
+        }, 1000);
+    }
+});
+
+const pinBlue = gpio.export(24, {
+    ready: () => {
+        setTimeout(() => {
+            pinBlue.reset();
+        }, 1000);
+    }
+});
+
+const pinGreen = gpio.export(26, {
+    ready: () => {
+        setTimeout(() => {
+            pinGreen.reset();
+        }, 1000);
+    }
+});
+
+const pins = {
+    1: pinBlue,
+    2: pinGreen,
+    3: pinYellow,
+    4: pinOrange,
+    5: pinRed
+}
+
+io.on('connection', (socket) => {
     db.defaults({
         zones: [
             {
@@ -71,7 +121,7 @@ io.on('connection', (socket) => {
             .assign({ active: true, uptime: new Date() })
             .write()
         socket.broadcast.emit('zones_update', db.get('zones').value());
-
+        pins[pin].set(0);
         res.send(db.get('zones')
             .value()
         )
@@ -85,8 +135,7 @@ io.on('connection', (socket) => {
             .assign({ active: false, uptime: null })
             .write()
         socket.broadcast.emit('zones_update', db.get('zones').value());
-
-
+        pins[pin].set();
         res.send(db.get('zones')
             .value()
         )
