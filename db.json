@@ -3,15 +3,15 @@
     {
       "name": "Front Yard Center",
       "zone": "1",
-      "active": false,
-      "uptime": null,
+      "active": true,
+      "uptime": "2020-04-27T22:46:24.447Z",
       "pictureUrl": "../../images/zone_1.jpg"
     },
     {
       "name": "Front Yard Right",
       "zone": "2",
-      "active": true,
-      "uptime": "2020-04-27T22:17:10.390Z",
+      "active": false,
+      "uptime": null,
       "pictureUrl": ""
     },
     {

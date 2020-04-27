@@ -5,6 +5,10 @@ import { getZones } from './api/rest';
 import Zones from "./components/Zones";
 import io from 'socket.io-client';
 import { Layout } from 'antd';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee, faWater, faShower } from '@fortawesome/free-solid-svg-icons'
+import { isMobile } from 'react-device-detect';
+
 const { Header, Footer, Sider, Content } = Layout;
 
 
@@ -24,8 +28,9 @@ function App() {
   return (
     <Layout>
       <Header>
-        <div style={{ display: "flex", flexDirection: "row" }}>
-          <div style={{ color: "white", fontWeight: 900 }}>Rainmaker</div>
+        <div style={{ display: "flex", flexDirection: "row", justifyContent: isMobile ? "center" : "flex-start", alignItems: "center" }}>
+          <FontAwesomeIcon color="white" icon={faShower} />
+          <div style={{ color: "white", fontWeight: 900, marginLeft: 10 }}>Rain Maker</div>
         </div>
       </Header>
       <Layout>
