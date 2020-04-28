@@ -21,45 +21,15 @@ const io = require('socket.io')(server);
 
 const gpio = require("gpio");
 
-const pinYellow = gpio.export(6, {
-    ready: () => {
-        setTimeout(() => {
-            pinYellow.reset();
-        }, 1000);
-    }
-});
+const pinYellow = gpio.export(6);
 
-const pinRed = gpio.export(16, {
-    ready: () => {
-        setTimeout(() => {
-            pinRed.reset();
-        }, 1000);
-    }
-});
+const pinRed = gpio.export(16);
 
-const pinOrange = gpio.export(13, {
-    ready: () => {
-        setTimeout(() => {
-            pinOrange.reset();
-        }, 1000);
-    }
-});
+const pinOrange = gpio.export(13);
 
-const pinBlue = gpio.export(24, {
-    ready: () => {
-        setTimeout(() => {
-            pinBlue.reset();
-        }, 1000);
-    }
-});
+const pinBlue = gpio.export(24);
 
-const pinGreen = gpio.export(26, {
-    ready: () => {
-        setTimeout(() => {
-            pinGreen.reset();
-        }, 1000);
-    }
-});
+const pinGreen = gpio.export(26);
 
 const pins = {
     1: pinBlue,
@@ -69,28 +39,25 @@ const pins = {
     5: pinRed
 }
 
-db.defaults({
+const defaultDB = {
     zones: [
         {
             name: "Front Yard Center",
             zone: "1",
             active: false,
             uptime: null,
-            pictureUrl: "../../images/zone_1.jpg"
         },
         {
             name: "Front Yard Right",
             zone: "2",
             active: false,
             uptime: null,
-            pictureUrl: ""
         },
         {
             name: "Flower Beds",
             zone: "3",
             active: false,
             uptime: null,
-            pictureUrl: ""
         },
         {
             name: "Backyard",
@@ -103,12 +70,13 @@ db.defaults({
             zone: "5",
             active: false,
             uptime: null,
-            pictureUrl: ""
         }
     ], system: {
         active: true
     }
-}).write()
+}
+
+db.defaults(defaultDB).write()
 
 app.get('/api/zone/on/:zone', (req, res) => {
     const { zone } = req.params;
@@ -214,6 +182,17 @@ app.get("/api/zone/image/:id", (req, res) => {
     res.sendFile(path.join(__dirname, '/images', `zone_${id}.jpg`));
 })
 
-// });
-
-server.listen(port, () => console.log(`Rainmaker running on: ${port}`));
+server.listen(port, () => {
+    setTimeout(() => {
+        pinBlue.set();
+        pinGreen.set();
+        pinOrange.set();
+        pinRed.set();
+        pinYellow.set();
+        console.log('All pins set to off..');
+        console.log('Setting all db options to off..')
+        db.setState(defaultDB).write();
+        console.log('Ready.')
+        console.log(`Rain Maker API running on: ${port}`)
+    }, 1000);
+});

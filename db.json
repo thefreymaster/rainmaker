@@ -3,23 +3,20 @@
     {
       "name": "Front Yard Center",
       "zone": "1",
-      "active": true,
-      "uptime": "2020-04-27T22:46:24.447Z",
-      "pictureUrl": "../../images/zone_1.jpg"
+      "active": false,
+      "uptime": null
     },
     {
       "name": "Front Yard Right",
       "zone": "2",
       "active": false,
-      "uptime": null,
-      "pictureUrl": ""
+      "uptime": null
     },
     {
       "name": "Flower Beds",
       "zone": "3",
       "active": false,
-      "uptime": null,
-      "pictureUrl": ""
+      "uptime": null
     },
     {
       "name": "Backyard",
@@ -31,8 +28,7 @@
       "name": "Front Yard Flower Beds",
       "zone": "5",
       "active": false,
-      "uptime": null,
-      "pictureUrl": ""
+      "uptime": null
     }
   ],
   "system": {
