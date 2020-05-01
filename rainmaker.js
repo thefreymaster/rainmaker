@@ -21,15 +21,15 @@ const io = require('socket.io')(server);
 
 const gpio = require("gpio");
 
-const relay1 = gpio.export(0);
+const relay1 = gpio.export(5);
 
-const relay2 = gpio.export(2);
+const relay2 = gpio.export(6);
 
-const relay3 = gpio.export(3);
+const relay3 = gpio.export(13);
 
-const relay4 = gpio.export(24);
+const relay4 = gpio.export(19);
 
-const relay5 = gpio.export(25);
+const relay5 = gpio.export(26);
 
 const pins = {
     1: relay1,
