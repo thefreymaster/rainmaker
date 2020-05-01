@@ -21,11 +21,11 @@ const io = require('socket.io')(server);
 
 const gpio = require("gpio");
 
-const relay1 = gpio.export(21);
+const relay1 = gpio.export(0);
 
-const relay2 = gpio.export(22);
+const relay2 = gpio.export(2);
 
-const relay3 = gpio.export(23);
+const relay3 = gpio.export(3);
 
 const relay4 = gpio.export(24);
 
