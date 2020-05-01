@@ -21,22 +21,22 @@ const io = require('socket.io')(server);
 
 const gpio = require("gpio");
 
-const pinYellow = gpio.export(6);
+const relay1 = gpio.export(21);
 
-const pinRed = gpio.export(16);
+const relay2 = gpio.export(22);
 
-const pinOrange = gpio.export(13);
+const relay3 = gpio.export(23);
 
-const pinBlue = gpio.export(24);
+const relay4 = gpio.export(24);
 
-const pinGreen = gpio.export(26);
+const relay5 = gpio.export(25);
 
 const pins = {
-    1: pinBlue,
-    2: pinGreen,
-    3: pinYellow,
-    4: pinOrange,
-    5: pinRed
+    1: relay1,
+    2: relay2,
+    3: relay3,
+    4: relay4,
+    5: relay5
 }
 
 const defaultDB = {
@@ -184,11 +184,11 @@ app.get("/api/zone/image/:id", (req, res) => {
 
 server.listen(port, () => {
     setTimeout(() => {
-        pinBlue.set();
-        pinGreen.set();
-        pinOrange.set();
-        pinRed.set();
-        pinYellow.set();
+        relay1.set();
+        relay2.set();
+        relay3.set();
+        relay4.set();
+        relay5.set();
         console.log('All pins set to off..');
         console.log('Setting all db options to off..')
         db.setState(defaultDB).write();

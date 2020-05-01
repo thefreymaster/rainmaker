@@ -11,6 +11,7 @@ import {
 } from "react-device-detect";
 import Loader from 'react-loader-spinner'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+import { MyResponsiveCalendar } from './Calendar';
 
 const socket = io('http://192.168.124.12:6700/');
 
@@ -68,6 +69,7 @@ const Zone = ({ zone, setZones }) => {
             <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center" }}>
                 <Switch onChange={() => zone.active ? setZoneOff({ zone, setZones }) : setZoneOn({ zone, setZones })} checked={zone.active} defaultChecked={zone.active} />
                 <Action zone={zone} />
+                <MyResponsiveCalendar />
             </div>
         </Card>
     )
