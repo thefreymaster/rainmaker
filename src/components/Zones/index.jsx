@@ -1,19 +1,15 @@
 import React, { useState, useLayoutEffect } from 'react';
-import { Switch, Card, Avatar } from 'antd';
-import { setZoneOff, setZoneOn, getZoneImage, getZones } from '../../api/rest';
+import { Switch, Card } from 'antd';
+import { setZoneOff, setZoneOn, getZones } from '../../api/rest';
 import io from 'socket.io-client';
 import Timer from "react-compound-timer"
 import {
-    BrowserView,
-    MobileView,
-    isBrowser,
     isMobile
 } from "react-device-detect";
 import Loader from 'react-loader-spinner'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
-import { MyResponsiveCalendar } from './Calendar';
 
-const socket = io('http://192.168.124.12:6700/');
+const socket = io(process.env.NODE_ENV === 'development' ? 'http://localhost:6700' : 'http://192.168.124.69:6700/');
 
 const Zones = () => {
     const [zones, setZones] = useState([]);
@@ -43,7 +39,9 @@ const Zones = () => {
         )
     }
     return zones.map(zone => {
-        return <Zone zone={zone} setZones={setZones} />
+        return <div key={zone.zone}>
+            <Zone zone={zone} setZones={setZones} />
+        </div>
     })
 }
 
@@ -53,15 +51,16 @@ const Zone = ({ zone, setZones }) => {
             <img
                 style={{
                     width: isMobile ? window.innerWidth : (window.innerWidth) / 5,
-                    filter: zone.active ? "grayscale(0)" : "grayscale(1)",
+                    // filter: zone.active ? "grayscale(0)" : "grayscale(1)",
                     transition: "filter 350ms ease-in-out"
                 }}
+                alt="lawn"
                 src={`/api/zone/image/${zone.zone}`}
             />
         }
             style={{ width: isMobile ? window.innerWidth : (window.innerWidth) / 5 }}>
             <Card.Meta
-                avatar={<i class="fas fa-tint"></i>}
+                avatar={<i className="fas fa-tint"></i>}
                 title={zone.name}
                 description={zone.uptime ? <Time time={zone.uptime} /> : "Not Watering"}
             />
@@ -69,7 +68,6 @@ const Zone = ({ zone, setZones }) => {
             <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center" }}>
                 <Switch onChange={() => zone.active ? setZoneOff({ zone, setZones }) : setZoneOn({ zone, setZones })} checked={zone.active} defaultChecked={zone.active} />
                 <Action zone={zone} />
-                <MyResponsiveCalendar />
             </div>
         </Card>
     )
@@ -84,32 +82,32 @@ const Time = ({ time }) => {
     )
 }
 
-const Title = ({ zone }) => {
-    return (
-        <div style={{ display: "flex", flexDirection: "row" }}>
-            <div>{zone.name}</div>
-            <Uptime zone={zone} />
-        </div>
-    )
-}
+// const Title = ({ zone }) => {
+//     return (
+//         <div style={{ display: "flex", flexDirection: "row" }}>
+//             <div>{zone.name}</div>
+//             <Uptime zone={zone} />
+//         </div>
+//     )
+// }
 
 const Action = ({ zone }) => {
     return (
         <div style={{
             marginLeft: 10,
             fontWeight: zone.active ? 700 : 300,
-            color: zone.active && "#1890ff"
+            color: zone.active && "#6b9b6f"
         }}>{zone.active ? "Active" : "Inactive"}</div>
     )
 }
 
-const Uptime = ({ zone }) => {
-    if (zone.uptime === null) {
-        return null
-    }
-    return (
-        <div>test</div>
-    )
-}
+// const Uptime = ({ zone }) => {
+//     if (zone.uptime === null) {
+//         return null
+//     }
+//     return (
+//         <div>test</div>
+//     )
+// }
 
 export default Zones;

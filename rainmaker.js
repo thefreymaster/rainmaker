@@ -39,39 +39,43 @@ const pins = {
     5: relay5
 }
 
+const defaultZones = [
+    {
+        name: "Front Yard Center",
+        zone: "1",
+        active: false,
+        uptime: null,
+    },
+    {
+        name: "Front Yard Right",
+        zone: "2",
+        active: false,
+        uptime: null,
+    },
+    {
+        name: "Flower Beds",
+        zone: "3",
+        active: false,
+        uptime: null,
+    },
+    {
+        name: "Backyard",
+        zone: "4",
+        active: false,
+        uptime: null
+    },
+    {
+        name: "Front Yard Flower Beds",
+        zone: "5",
+        active: false,
+        uptime: null,
+    }
+]
+
 const defaultDB = {
-    zones: [
-        {
-            name: "Front Yard Center",
-            zone: "1",
-            active: false,
-            uptime: null,
-        },
-        {
-            name: "Front Yard Right",
-            zone: "2",
-            active: false,
-            uptime: null,
-        },
-        {
-            name: "Flower Beds",
-            zone: "3",
-            active: false,
-            uptime: null,
-        },
-        {
-            name: "Backyard",
-            zone: "4",
-            active: false,
-            uptime: null
-        },
-        {
-            name: "Front Yard Flower Beds",
-            zone: "5",
-            active: false,
-            uptime: null,
-        }
-    ], system: {
+    zones: defaultZones,
+    calendar: [],
+    system: {
         active: true
     }
 }
@@ -81,15 +85,27 @@ db.defaults(defaultDB).write()
 app.get('/api/zone/on/:zone', (req, res) => {
     const { zone } = req.params;
     console.log({ zone, route: `/api/zone/on/${zone}`, value: true })
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() < 10 ? `0${today.getMonth()}` : today.getMonth();
+    const date = today.getDate() < 10 ? `0${today.getDate()}` : today.getDate();
+    db.get('calendar')
+        .push({ day: `${year}-${month}-${date}`, value: 1 })
+        .write()
     db.get('zones')
         .find({ zone: zone })
         .assign({ active: true, uptime: new Date() })
         .write()
     io.emit('zones_update', db.get('zones').value());
+    io.emit('calendar_update', db.get('calendar').value());
     pins[zone].set(0);
     res.send(db.get('zones')
         .value()
     )
+})
+
+app.get('/api/calendar', (req, res) => {
+    res.send(db.get('calendar'))
 })
 
 app.get('/api/zone/off/:zone', (req, res) => {
@@ -191,7 +207,7 @@ server.listen(port, () => {
         relay5.set();
         console.log('All pins set to off..');
         console.log('Setting all db options to off..')
-        db.setState(defaultDB).write();
+        db.set('zones', defaultZones).write();
         console.log('Ready.')
         console.log(`Rain Maker API running on: ${port}`)
     }, 1000);

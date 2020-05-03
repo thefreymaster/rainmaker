@@ -2,3 +2,25 @@
   display: flex;
   flex-direction: row;
 }
+
+.calendar-container{
+  background-color: #5f8b63
+}
+
+.calendar-container div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ant-card{
+  border-radius: 0px !important;
+}
+
+.ant-layout-header{
+  background-color: #5f8b63 !important;
+}
+
+.ant-switch-checked {
+  background-color: #5f8a63 !important;
+}

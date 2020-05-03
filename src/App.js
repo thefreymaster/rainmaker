@@ -1,23 +1,29 @@
-import React, { useLayoutEffect, useState } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import { getZones } from './api/rest';
 import Zones from "./components/Zones";
-import io from 'socket.io-client';
-import { Layout } from 'antd';
+import { Layout, Button } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faWater, faShower } from '@fortawesome/free-solid-svg-icons'
+import { faShower } from '@fortawesome/free-solid-svg-icons'
 import { isMobile } from 'react-device-detect';
+import { Calendar } from './components/Zones/Calendar';
+import Details from './components/Details';
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Footer, Content } = Layout;
 
 
 function App() {
-  const [height, setHeight] = React.useState(window.innerHeight - 129)
+  const [height, setHeight] = React.useState((window.innerHeight - 128) / 2);
+  const [open, setOpen] = React.useState(false);
   const inline = {
     zones: {
-      height: height,
+      height,
       flexWrap: "wrap"
+    },
+    calendar: {
+      height: ((window.innerHeight - 128) - height),
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
     }
   }
 
@@ -30,7 +36,9 @@ function App() {
       <Header>
         <div style={{ display: "flex", flexDirection: "row", justifyContent: isMobile ? "center" : "flex-start", alignItems: "center" }}>
           <FontAwesomeIcon color="white" icon={faShower} />
-          <div style={{ color: "white", fontWeight: 900, marginLeft: 10 }}>Rain Maker</div>
+          <div style={{ color: "white", fontWeight: 900, marginLeft: 10, fontFamily: `'Comfortaa', cursive` }}>Rain Maker</div>
+          <div style={{ flexGrow: 1 }} />
+          <Button onClick={() => setOpen(!open)} shape="circle" icon={<FontAwesomeIcon icon={faShower} />} />
         </div>
       </Header>
       <Layout>
@@ -38,6 +46,13 @@ function App() {
           <div className="zones-container" style={inline.zones}>
             <Zones />
           </div>
+          <div className="calendar-container" style={inline.calendar}>
+            <Calendar />
+          </div>
+          <Details
+            open={open}
+            setOpen={setOpen}
+          />
         </Content>
       </Layout>
       <Footer>

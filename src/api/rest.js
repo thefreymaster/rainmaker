@@ -25,3 +25,10 @@ export const setZoneOff = ({ zone, setZones }) => axios.get(`/api/zone/off/${zon
         console.log(error);
     })
 
+export const getCalendarEntries = () => axios.get('/api/calendar')
+    .then(response => response)
+    .catch(function (error) {
+        // handle error
+        console.log(error);
+    })
+
