@@ -87,7 +87,7 @@ app.get('/api/zone/on/:zone', (req, res) => {
     console.log({ zone, route: `/api/zone/on/${zone}`, value: true })
     const today = new Date();
     const year = today.getFullYear();
-    const month = today.getMonth() < 10 ? `0${today.getMonth()}` : today.getMonth();
+    const month = today.getMonth() < 10 ? `0${today.getMonth() + 1}` : today.getMonth();
     const date = today.getDate() < 10 ? `0${today.getDate()}` : today.getDate();
     db.get('calendar')
         .push({ day: `${year}-${month}-${date}`, value: 1 })
