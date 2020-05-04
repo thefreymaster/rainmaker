@@ -21,15 +21,40 @@ const io = require('socket.io')(server);
 
 const gpio = require("gpio");
 
-const relay1 = gpio.export(5);
+const relay1 = gpio.export(5, {
+    direction: gpio.DIRECTION.IN,
+    ready: function () {
+        console.log("Pin 1 ready.")
+    }
+});
 
-const relay2 = gpio.export(6);
+const relay2 = gpio.export(6, {
+    direction: gpio.DIRECTION.IN,
+    ready: function () {
+        console.log("Pin 2 ready.")
+    }
+});
 
-const relay3 = gpio.export(13);
+const relay3 = gpio.export(13, {
+    direction: gpio.DIRECTION.IN,
+    ready: function () {
+        console.log("Pin 3 ready.")
+    }
+});
 
-const relay4 = gpio.export(19);
+const relay4 = gpio.export(19, {
+    direction: gpio.DIRECTION.IN,
+    ready: function () {
+        console.log("Pin 4 ready.")
+    }
+});
 
-const relay5 = gpio.export(26);
+const relay5 = gpio.export(26, {
+    direction: gpio.DIRECTION.IN,
+    ready: function () {
+        console.log("Pin 5 ready.")
+    }
+});
 
 const pins = {
     1: relay1,
@@ -200,14 +225,15 @@ app.get("/api/zone/image/:id", (req, res) => {
 
 server.listen(port, () => {
     setTimeout(() => {
-        relay1.set();
-        relay2.set();
-        relay3.set();
-        relay4.set();
-        relay5.set();
+        db.assign('zones', defaultZones).write();
+        relay1.set(0);
+        relay2.set(0);
+        relay3.set(0);
+        relay4.set(0);
+        relay5.set(0);
         console.log('All pins set to off..');
         console.log('Setting all db options to off..')
-        db.set('zones', defaultZones).write();
+
         console.log('Ready.')
         console.log(`Rain Maker API running on: ${port}`)
     }, 1000);

@@ -31,7 +31,32 @@
       "uptime": null
     }
   ],
-  "calendar": [],
+  "calendar": [
+    {
+      "day": "2020-04-03",
+      "value": 1
+    },
+    {
+      "day": "2020-04-03",
+      "value": 1
+    },
+    {
+      "day": "2020-04-03",
+      "value": 1
+    },
+    {
+      "day": "2020-04-03",
+      "value": 1
+    },
+    {
+      "day": "2020-04-03",
+      "value": 1
+    },
+    {
+      "day": "2020-05-03",
+      "value": 1
+    }
+  ],
   "system": {
     "active": true
   }
