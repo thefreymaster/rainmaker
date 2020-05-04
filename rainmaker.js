@@ -22,37 +22,46 @@ const io = require('socket.io')(server);
 const gpio = require("gpio");
 
 const relay1 = gpio.export(5, {
-    direction: gpio.DIRECTION.IN,
+    direction: gpio.DIRECTION.OUT,
     ready: function () {
-        console.log("Pin 1 ready.")
+        console.log("Pin 1 ready.");
+        relay1.set(0);
+
     }
 });
 
 const relay2 = gpio.export(6, {
-    direction: gpio.DIRECTION.IN,
+    direction: gpio.DIRECTION.OUT,
     ready: function () {
         console.log("Pin 2 ready.")
+        relay2.set(0);
+
     }
 });
 
 const relay3 = gpio.export(13, {
-    direction: gpio.DIRECTION.IN,
+    direction: gpio.DIRECTION.OUT,
     ready: function () {
         console.log("Pin 3 ready.")
+        relay3.set(0);
+
     }
 });
 
 const relay4 = gpio.export(19, {
-    direction: gpio.DIRECTION.IN,
+    direction: gpio.DIRECTION.OUT,
     ready: function () {
         console.log("Pin 4 ready.")
+        relay4.set(0);
     }
 });
 
 const relay5 = gpio.export(26, {
-    direction: gpio.DIRECTION.IN,
+    direction: gpio.DIRECTION.OUT,
     ready: function () {
         console.log("Pin 5 ready.")
+        relay5.set(0);
+
     }
 });
 
@@ -236,5 +245,5 @@ server.listen(port, () => {
 
         console.log('Ready.')
         console.log(`Rain Maker API running on: ${port}`)
-    }, 1000);
+    }, 1500);
 });
