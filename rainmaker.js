@@ -253,21 +253,11 @@ server.listen(port, () => {
             relay5.set();
             console.log('Second failsafe ran, all pins set to off..');
             setTimeout(() => {
-                if(relay1.value == '1'){
-                    relay1.set();
-                }
-                if(relay2.value == '1'){
-                    relay2.set();
-                }
-                if(relay3.value == '1'){
-                    relay3.set();
-                }
-                if(relay4.value == '1'){
-                    relay4.set();
-                }
-                if(relay5.value == '1'){
-                    relay5.set();
-                }
+                relay1.set();
+                relay2.set();
+                relay3.set();
+                relay4.set();
+                relay5.set();
                 console.log('Third failsafe ran, all pins set to off..');
             }, 10000);
         }, 5000);
