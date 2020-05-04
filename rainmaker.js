@@ -25,7 +25,7 @@ const relay1 = gpio.export(5, {
     direction: gpio.DIRECTION.OUT,
     ready: function () {
         console.log("Pin 1 ready.");
-        relay1.set(0);
+        relay1.set();
 
     }
 });
@@ -34,7 +34,7 @@ const relay2 = gpio.export(6, {
     direction: gpio.DIRECTION.OUT,
     ready: function () {
         console.log("Pin 2 ready.")
-        relay2.set(0);
+        relay2.set();
 
     }
 });
@@ -43,7 +43,7 @@ const relay3 = gpio.export(13, {
     direction: gpio.DIRECTION.OUT,
     ready: function () {
         console.log("Pin 3 ready.")
-        relay3.set(0);
+        relay3.set();
 
     }
 });
@@ -52,7 +52,7 @@ const relay4 = gpio.export(19, {
     direction: gpio.DIRECTION.OUT,
     ready: function () {
         console.log("Pin 4 ready.")
-        relay4.set(0);
+        relay4.set();
     }
 });
 
@@ -60,7 +60,7 @@ const relay5 = gpio.export(26, {
     direction: gpio.DIRECTION.OUT,
     ready: function () {
         console.log("Pin 5 ready.")
-        relay5.set(0);
+        relay5.set();
 
     }
 });
@@ -235,15 +235,31 @@ app.get("/api/zone/image/:id", (req, res) => {
 server.listen(port, () => {
     setTimeout(() => {
         db.assign('zones', defaultZones).write();
-        relay1.set(0);
-        relay2.set(0);
-        relay3.set(0);
-        relay4.set(0);
-        relay5.set(0);
+        relay1.set();
+        relay2.set();
+        relay3.set();
+        relay4.set();
+        relay5.set();
         console.log('All pins set to off..');
         console.log('Setting all db options to off..')
 
         console.log('Ready.')
         console.log(`Rain Maker API running on: ${port}`)
+        setTimeout(() => {
+            relay1.set();
+            relay2.set();
+            relay3.set();
+            relay4.set();
+            relay5.set();
+            console.log('Second failsafe ran, all pins set to off..');
+            setTimeout(() => {
+                relay1.set();
+                relay2.set();
+                relay3.set();
+                relay4.set();
+                relay5.set();
+                console.log('Third failsafe ran, all pins set to off..');
+            }, 10000);
+        }, 5000);
     }, 1500);
 });
