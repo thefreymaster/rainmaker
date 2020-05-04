@@ -31,12 +31,7 @@
       "uptime": null
     }
   ],
-  "calendar": [
-    {
-      "day": "2020-04-03",
-      "value": 1
-    }
-  ],
+  "calendar": [],
   "system": {
     "active": true
   }

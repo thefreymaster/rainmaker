@@ -20,11 +20,17 @@ function App() {
       flexWrap: "wrap"
     },
     calendar: {
-      height: ((window.innerHeight - 128) - height),
+      height,
       display: 'flex',
+      flexDirection: 'column',
       justifyContent: 'center',
-      alignItems: 'center'
-    }
+      alignItems: 'center',
+      title: {
+        position: 'relative',
+        top: 70,
+        fontWeight: 500
+      }
+    },
   }
 
   window.addEventListener('resize', () => {
@@ -46,9 +52,12 @@ function App() {
           <div className="zones-container" style={inline.zones}>
             <Zones />
           </div>
-          <div className="calendar-container" style={inline.calendar}>
-            <Calendar />
-          </div>
+          {!isMobile &&
+            <div className="calendar-container" style={inline.calendar}>
+              <div style={inline.calendar.title}>Days Watered</div>
+              <Calendar />
+            </div>
+          }
           <Details
             open={open}
             setOpen={setOpen}

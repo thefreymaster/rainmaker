@@ -1,9 +1,9 @@
 import React, { useLayoutEffect } from 'react';
-import { ResponsiveCalendarCanvas } from '@nivo/calendar'
+import { ResponsiveCalendar } from '@nivo/calendar'
 import { getCalendarEntries } from '../../api/rest';
 import io from 'socket.io-client';
 
-const socket = io(process.env.NODE_ENV === 'development' ? 'http://localhost:6700' : 'http://192.168.124.69:6700/');console.log(process.env.NODE_ENV)
+const socket = io(process.env.NODE_ENV === 'development' ? 'http://localhost:6700' : 'http://192.168.124.69:6700/'); console.log(process.env.NODE_ENV)
 const from = new Date(2020, 0, 1)
 const to = new Date(2020, 11, 31)
 
@@ -44,14 +44,11 @@ export const Calendar = () => {
     })
   }, [])
   return (
-    <ResponsiveCalendarCanvas
+    <ResponsiveCalendar
       data={calendar}
-      dayBorderWidth={2}
-      monthBorderWidth={1}
-      monthBorderColor="#001529"
       colors={['#2d472a', '#5f8b63', '#7fc085', '#91b594', '#5d9761']}
-      theme={theme}
       align="center"
+      emptyColor="#d6d6d6"
       {...commonProps}
     />
   )
