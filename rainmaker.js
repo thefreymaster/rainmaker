@@ -87,12 +87,6 @@ const defaultZones = [
         uptime: null,
     },
     {
-        name: "Flower Beds",
-        zone: "3",
-        active: false,
-        uptime: null,
-    },
-    {
         name: "Backyard",
         zone: "4",
         active: false,

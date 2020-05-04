@@ -15,7 +15,6 @@ const Zones = () => {
     const [zones, setZones] = useState([]);
     const [loading, setLoading] = useState(true);
 
-
     useLayoutEffect(() => {
         socket.on('zones_update', (data) => {
             console.log(data)
@@ -39,9 +38,11 @@ const Zones = () => {
         )
     }
     return zones.map(zone => {
-        return <div key={zone.zone}>
-            <Zone zone={zone} setZones={setZones} />
-        </div>
+        return (
+            <div key={zone.zone} style={{ paddingLeft: isMobile ? 0 : 20, paddingBottom: 20 }}>
+                <Zone zone={zone} setZones={setZones} />
+            </div>
+        )
     })
 }
 
@@ -50,7 +51,7 @@ const Zone = ({ zone, setZones }) => {
         <Card key={zone.zone} cover={
             <img
                 style={{
-                    width: isMobile ? window.innerWidth : (window.innerWidth) / 5,
+                    width: isMobile ? window.innerWidth : ((window.innerWidth * .8) - 60) / 2,
                     // filter: zone.active ? "grayscale(0)" : "grayscale(1)",
                     transition: "filter 350ms ease-in-out"
                 }}
@@ -58,7 +59,7 @@ const Zone = ({ zone, setZones }) => {
                 src={`/api/zone/image/${zone.zone}`}
             />
         }
-            style={{ width: isMobile ? window.innerWidth : (window.innerWidth) / 5 }}>
+            style={{ width: isMobile ? window.innerWidth : ((window.innerWidth * .8) - 60) / 2 }}>
             <Card.Meta
                 avatar={<i className="fas fa-tint"></i>}
                 title={zone.name}

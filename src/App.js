@@ -12,22 +12,25 @@ const { Header, Footer, Content } = Layout;
 
 
 function App() {
-  const [height, setHeight] = React.useState((window.innerHeight - 128) / 2);
+  const [height, setHeight] = React.useState(window.innerHeight);
   const [open, setOpen] = React.useState(false);
   const inline = {
     zones: {
-      height,
-      flexWrap: "wrap"
+      width: isMobile ? '100%' : '80%',
+      flexWrap: 'wrap',
+      paddingTop: 20,
+      paddingRight: 20,
     },
     calendar: {
-      height,
+      minHeight: window.innerHeight - 128,
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
+      width: '20%',
       title: {
         position: 'relative',
-        top: 70,
+        top: 20,
         fontWeight: 500
       }
     },
@@ -49,15 +52,21 @@ function App() {
       </Header>
       <Layout>
         <Content>
-          <div className="zones-container" style={inline.zones}>
-            <Zones />
-          </div>
-          {!isMobile &&
-            <div className="calendar-container" style={inline.calendar}>
-              <div style={inline.calendar.title}>Days Watered</div>
-              <Calendar />
+          <div style={{
+            display: 'flex',
+            flexDirection: 'row'
+          }}>
+            <div className="zones-container" style={inline.zones}>
+              <Zones />
             </div>
-          }
+            {!isMobile &&
+              <div className="calendar-container" style={inline.calendar}>
+                <div style={inline.calendar.title}>Days Watered</div>
+                <Calendar />
+              </div>
+            }
+          </div>
+
           <Details
             open={open}
             setOpen={setOpen}

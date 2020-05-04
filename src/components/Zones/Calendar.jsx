@@ -8,8 +8,8 @@ const from = new Date(2020, 0, 1)
 const to = new Date(2020, 11, 31)
 
 const commonProps = {
-  width: 900,
-  height: 260,
+  width: window.innerWidth * 0.2,
+  height: window.innerHeight - 128,
   margin: {
     top: 50,
     right: 10,
@@ -49,6 +49,7 @@ export const Calendar = () => {
       colors={['#2d472a', '#5f8b63', '#7fc085', '#91b594', '#5d9761']}
       align="center"
       emptyColor="#d6d6d6"
+      direction="vertical"
       {...commonProps}
     />
   )

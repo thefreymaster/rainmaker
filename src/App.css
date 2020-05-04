@@ -4,17 +4,13 @@
 }
 
 .calendar-container{
-  background-color: #5f8b63
+  background-color: #416044
 }
 
 .calendar-container div{
   display: flex;
   justify-content: center;
-  align-items: center;
-}
-
-.ant-card{
-  border-radius: 0px !important;
+  align-items: flex-start;
 }
 
 .ant-layout-header{
@@ -23,4 +19,8 @@
 
 .ant-switch-checked {
   background-color: #5f8a63 !important;
+}
+
+.ant-layout-footer {
+  background: #ffffff !important;
 }
