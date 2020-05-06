@@ -11,7 +11,7 @@ const Details = (props) => {
         >
             <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
                 <FontAwesomeIcon color="white" icon={faShower} size="6x" />
-                <div style={{ color: "white", fontWeight: 900, fontSize: 36, fontFamily: `'Comfortaa', cursive` }}>Rain Maker</div>
+                <div style={{ color: "white", fontWeight: 900, fontSize: 36 }}>Rain Maker</div>
             </div>
         </Drawer>
     )

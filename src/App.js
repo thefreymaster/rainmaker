@@ -3,7 +3,7 @@ import './App.css';
 import Zones from "./components/Zones";
 import { Layout, Button } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShower } from '@fortawesome/free-solid-svg-icons'
+import { faShower, faHamburger, faBars } from '@fortawesome/free-solid-svg-icons'
 import { isMobile } from 'react-device-detect';
 import { Calendar } from './components/Zones/Calendar';
 import Details from './components/Details';
@@ -16,18 +16,18 @@ function App() {
   const [open, setOpen] = React.useState(false);
   const inline = {
     zones: {
-      width: isMobile ? '100%' : '80%',
+      width: isMobile ? '100%' : '85%',
       flexWrap: 'wrap',
       paddingTop: 20,
       paddingRight: 20,
     },
     calendar: {
-      minHeight: window.innerHeight - 128,
+      maxHeight: window.innerHeight - 128,
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      width: '20%',
+      width: '15%',
       title: {
         position: 'relative',
         top: 20,
@@ -45,9 +45,9 @@ function App() {
       <Header>
         <div style={{ display: "flex", flexDirection: "row", justifyContent: isMobile ? "center" : "flex-start", alignItems: "center" }}>
           <FontAwesomeIcon color="white" icon={faShower} />
-          <div style={{ color: "white", fontWeight: 900, marginLeft: 10, fontFamily: `'Comfortaa', cursive` }}>Rain Maker</div>
+          <div style={{ color: "white", fontWeight: 900, marginLeft: 10 }}>Rain Maker</div>
           <div style={{ flexGrow: 1 }} />
-          <Button onClick={() => setOpen(!open)} shape="circle" icon={<FontAwesomeIcon icon={faShower} />} />
+          <Button style={{color: 'white'}} type="link"  onClick={() => setOpen(!open)} icon={<FontAwesomeIcon icon={faBars} />} />
         </div>
       </Header>
       <Layout>
@@ -61,7 +61,6 @@ function App() {
             </div>
             {!isMobile &&
               <div className="calendar-container" style={inline.calendar}>
-                <div style={inline.calendar.title}>Days Watered</div>
                 <Calendar />
               </div>
             }

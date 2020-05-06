@@ -39,7 +39,7 @@ const Zones = () => {
     }
     return zones.map(zone => {
         return (
-            <div key={zone.zone} style={{ paddingLeft: isMobile ? 0 : 20, paddingBottom: 20 }}>
+            <div key={zone.zone} style={{ paddingLeft: isMobile ? 0 : 20, paddingBottom: 20, minHeight: '100% !important' }}>
                 <Zone zone={zone} setZones={setZones} />
             </div>
         )
@@ -48,10 +48,10 @@ const Zones = () => {
 
 const Zone = ({ zone, setZones }) => {
     return (
-        <Card key={zone.zone} cover={
+        <Card style={{minHeight: '100% !important'}} key={zone.zone} cover={
             <img
                 style={{
-                    width: isMobile ? window.innerWidth : ((window.innerWidth * .8) - 60) / 2,
+                    width: isMobile ? window.innerWidth : ((window.innerWidth * .85) - 100) / 4,
                     // filter: zone.active ? "grayscale(0)" : "grayscale(1)",
                     transition: "filter 350ms ease-in-out"
                 }}
@@ -59,7 +59,7 @@ const Zone = ({ zone, setZones }) => {
                 src={`/api/zone/image/${zone.zone}`}
             />
         }
-            style={{ width: isMobile ? window.innerWidth : ((window.innerWidth * .8) - 60) / 2 }}>
+            style={{ width: isMobile ? window.innerWidth : ((window.innerWidth * .85) - 100) / 4 }}>
             <Card.Meta
                 avatar={<i className="fas fa-tint"></i>}
                 title={zone.name}
