@@ -27,3 +27,7 @@
 .ant-card{
   min-height: 100% !important
 }
+.ant-card-meta{
+  display: flex;
+  align-items: center;
+}

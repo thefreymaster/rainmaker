@@ -48,18 +48,19 @@ const Zones = () => {
 
 const Zone = ({ zone, setZones }) => {
     return (
-        <Card style={{minHeight: '100% !important'}} key={zone.zone} cover={
+        <Card style={{ minHeight: '100% !important' }} key={zone.zone} cover={
             <img
                 style={{
-                    width: isMobile ? window.innerWidth : ((window.innerWidth * .85) - 100) / 4,
-                    // filter: zone.active ? "grayscale(0)" : "grayscale(1)",
-                    transition: "filter 350ms ease-in-out"
+                    width: isMobile ? window.innerWidth : ((window.innerWidth) - 100) / 4,
+                    transition: "filter 350ms ease-in-out",
+                    height: 140,
+                    objectFit: 'cover',
                 }}
                 alt="lawn"
                 src={`/api/zone/image/${zone.zone}`}
             />
         }
-            style={{ width: isMobile ? window.innerWidth : ((window.innerWidth * .85) - 100) / 4 }}>
+            style={{ width: isMobile ? window.innerWidth : ((window.innerWidth) - 100) / 4 }}>
             <Card.Meta
                 avatar={<i className="fas fa-tint"></i>}
                 title={zone.name}
