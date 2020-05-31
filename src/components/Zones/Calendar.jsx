@@ -49,13 +49,13 @@ export const Calendar = () => {
     getCalendarEntries().then(({ data }) => {
       setCalendarData(data);
     })
-    // socket.on('calendar_count_update', (data) => {
-    //   console.log(data)
-    //   setCalendarCount(data)
-    // })
-    // getCalendarEntries().then(({ data }) => {
-    //   setCalendarCount(data);
-    // })
+    socket.on('calendar_count_update', (data) => {
+      console.log(data)
+      setCalendarCount(data)
+    })
+    getCalendarEntries().then(({ data }) => {
+      setCalendarCount(data.length);
+    })
   }, [])
   return (
     <div style={{ paddingLeft: 20, paddingBottom: 20, paddingRight: 20 }}>

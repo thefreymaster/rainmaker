@@ -148,6 +148,7 @@ app.get('/api/calendar/count', (req, res) => {
                 return item;
             }
         })
+        .uniq()
         .value());
 })
 
