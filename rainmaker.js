@@ -167,7 +167,7 @@ app.get('/api/zone/off/:zone', (req, res) => {
 app.get('/api/zone/:zone', (req, res) => {
     const { zone } = req.params;
     const zoneToReturn = db.get('zones')
-        .find({ zone: zone })
+        .find({ zone })
         .value()
     res.send(zoneToReturn.active)
 })
