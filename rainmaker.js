@@ -150,7 +150,7 @@ app.get('/api/calendar/count', (req, res) => {
             }
         })
         .value()
-    res.send(_.uniqBy(count, 'day').length)
+    res.send(_.uniqBy(count, 'day'))
 })
 
 app.get('/api/zone/off/:zone', (req, res) => {
