@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
-const path = require('path')
+const path = require('path');
+const _ = require('lodash');
 
 const port = 6700;
 const low = require('lowdb');
@@ -140,7 +141,7 @@ app.get('/api/calendar', (req, res) => {
 })
 
 app.get('/api/calendar/count', (req, res) => {
-    res.send(db.get('calendar')
+    res.send(_.uniq(db.get('calendar')
         .filter(item => {
             console.log({ today: new Date().getMonth() })
             console.log({ db: new Date(item.day).getMonth() })
@@ -148,8 +149,8 @@ app.get('/api/calendar/count', (req, res) => {
                 return item;
             }
         })
-        .uniq()
-        .value());
+        .value())
+    )
 })
 
 app.get('/api/zone/off/:zone', (req, res) => {

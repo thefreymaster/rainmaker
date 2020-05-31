@@ -16,6 +16,7 @@
     "axios": "^0.19.2",
     "express": "^4.17.1",
     "gpio": "^0.2.10",
+    "lodash": "^4.17.15",
     "lowdb": "^1.0.0",
     "react": "^16.12.0",
     "react-device-detect": "^1.12.0",
