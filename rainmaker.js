@@ -141,7 +141,7 @@ app.get('/api/calendar', (req, res) => {
 })
 
 app.get('/api/calendar/count', (req, res) => {
-    const count = _.uniq(db.get('calendar')
+    const count = db.get('calendar')
         .filter(item => {
             console.log({ today: new Date().getMonth() })
             console.log({ db: new Date(item.day).getMonth() })
@@ -149,8 +149,8 @@ app.get('/api/calendar/count', (req, res) => {
                 return item;
             }
         })
-        .value(), 'day')
-    console.log(count)
+        .value()
+    console.log(_.uniq(count), 'day')
     res.send(count)
 })
 
