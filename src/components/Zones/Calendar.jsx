@@ -3,7 +3,7 @@ import { ResponsiveCalendar } from '@nivo/calendar'
 import { Card, Avatar, Typography, Tooltip } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { getCalendarEntries } from '../../api/rest';
+import { getCalendarEntries, getCalendarEntriesCount } from '../../api/rest';
 import io from 'socket.io-client';
 import { faFaucet, faCalendarDay } from '../../../../../../node_modules/@fortawesome/free-solid-svg-icons';
 import { GREEN } from '../../App';
@@ -53,7 +53,8 @@ export const Calendar = () => {
       console.log(data)
       setCalendarCount(data)
     })
-    getCalendarEntries().then(({ data }) => {
+    getCalendarEntriesCount().then(({ data }) => {
+      debugger
       setCalendarCount(data.length);
     })
   }, [])
