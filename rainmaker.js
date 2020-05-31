@@ -141,7 +141,7 @@ app.get('/api/calendar', (req, res) => {
 
 app.get('/api/calendar/count', (req, res) => {
     res.send(db.get('calendar')
-        .filter(item => new Date().getMonth === new Date(item.x).getMonth())
+        .filter(item => new Date().getMonth === new Date(item.day).getMonth())
         .value());
 })
 
