@@ -126,6 +126,9 @@ app.get('/api/zone/on/:zone', (req, res) => {
         .write()
     io.emit('zones_update', db.get('zones').value());
     io.emit('calendar_update', db.get('calendar').value());
+    io.emit('calendar_count_update', db.get('calendar')
+        .filter(item => new Date().getMonth === new Date(item.x).getMonth())
+        .value());
     pins[zone].set(0);
     res.send(db.get('zones')
         .value()
@@ -134,6 +137,12 @@ app.get('/api/zone/on/:zone', (req, res) => {
 
 app.get('/api/calendar', (req, res) => {
     res.send(db.get('calendar'))
+})
+
+app.get('/api/calendar/count', (req, res) => {
+    res.send(db.get('calendar')
+        .filter(item => new Date().getMonth === new Date(item.x).getMonth())
+        .value());
 })
 
 app.get('/api/zone/off/:zone', (req, res) => {

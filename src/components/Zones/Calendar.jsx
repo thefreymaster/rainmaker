@@ -1,11 +1,12 @@
 import React, { useLayoutEffect } from 'react';
 import { ResponsiveCalendar } from '@nivo/calendar'
-import { Card, Avatar } from 'antd';
+import { Card, Avatar, Typography, Tooltip } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { getCalendarEntries } from '../../api/rest';
 import io from 'socket.io-client';
 import { faFaucet, faCalendarDay } from '../../../../../../node_modules/@fortawesome/free-solid-svg-icons';
+import { GREEN } from '../../App';
 
 const socket = io(process.env.NODE_ENV === 'development' ? 'http://localhost:6700' : 'http://192.168.124.69:6700/'); console.log(process.env.NODE_ENV)
 const from = new Date(2020, 0, 1)
@@ -38,6 +39,8 @@ const theme = {
 
 export const Calendar = () => {
   const [calendar, setCalendarData] = React.useState([]);
+  const [calendarCount, setCalendarCount] = React.useState(0);
+
   useLayoutEffect(() => {
     socket.on('calendar_update', (data) => {
       console.log(data)
@@ -45,6 +48,13 @@ export const Calendar = () => {
     })
     getCalendarEntries().then(({ data }) => {
       setCalendarData(data);
+    })
+    socket.on('calendar_count_update', (data) => {
+      console.log(data)
+      setCalendarCount(data)
+    })
+    getCalendarEntries().then(({ data }) => {
+      setCalendarCount(data);
     })
   }, [])
   return (
@@ -60,11 +70,21 @@ export const Calendar = () => {
           />
         </div>
       }>
-        <Card.Meta
-          avatar={<Avatar icon={<FontAwesomeIcon icon={faCalendarDay} />} />}
-          title="Watering Calendar"
-          description="Days with active watering"
-        />
+        <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+          <Card.Meta
+            avatar={<Avatar icon={<FontAwesomeIcon icon={faCalendarDay} />} />}
+            title="Watering Calendar"
+            description="Days with active watering"
+          />
+          <div style={{ flexGrow: 1 }} />
+          <Tooltip placement="bottom" title="Days watered in the current calendar month">
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <Typography.Text strong>Days Watered/Month</Typography.Text>
+              <Avatar size={40} style={{ backgroundColor: GREEN }}>{calendarCount}</Avatar>
+            </div>
+          </Tooltip>
+        </div>
+
       </Card>
     </div>
   )

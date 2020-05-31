@@ -31,3 +31,11 @@
   display: flex;
   align-items: center;
 }
+.ant-tag-success {
+  color: #ffffff;
+  background: #5f8a63;
+  border-color: #5f8a63;
+}
+.ant-card-meta-avatar{
+  display: none;
+}

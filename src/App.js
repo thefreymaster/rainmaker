@@ -10,6 +10,8 @@ import Details from './components/Details';
 
 const { Header, Footer, Content } = Layout;
 
+export const GREEN = "#5f8b63";
+
 
 function App() {
   const [height, setHeight] = React.useState(window.innerHeight);

@@ -1,5 +1,5 @@
 import React, { useState, useLayoutEffect } from 'react';
-import { Switch, Card } from 'antd';
+import { Switch, Card, Tag } from 'antd';
 import { setZoneOff, setZoneOn, getZones } from '../../api/rest';
 import io from 'socket.io-client';
 import Timer from "react-compound-timer"
@@ -64,8 +64,9 @@ const Zone = ({ zone, setZones }) => {
             <Card.Meta
                 avatar={<i className="fas fa-tint"></i>}
                 title={zone.name}
-                description={zone.uptime ? <Time time={zone.uptime} /> : "Not Watering"}
+                description={zone.uptime ? <Tag color="success">Watering {zone.uptime}</Tag> : <Tag>Not Watering</Tag>}
             />
+            
             <br />
             <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center" }}>
                 <Switch onChange={() => zone.active ? setZoneOff({ zone, setZones }) : setZoneOn({ zone, setZones })} checked={zone.active} defaultChecked={zone.active} />
