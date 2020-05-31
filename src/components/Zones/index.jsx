@@ -64,7 +64,7 @@ const Zone = ({ zone, setZones }) => {
             <Card.Meta
                 avatar={<i className="fas fa-tint"></i>}
                 title={zone.name}
-                description={zone.uptime ? <Tag color="success">Watering {zone.uptime}</Tag> : <Tag>Not Watering</Tag>}
+                description={zone.uptime ? <Tag color="success">Watering <Time time={zone.uptime} /></Tag> : <Tag>Not Watering</Tag>}
             />
             
             <br />
