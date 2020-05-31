@@ -140,14 +140,14 @@ app.get('/api/calendar', (req, res) => {
 })
 
 app.get('/api/calendar/count', (req, res) => {
-    res.send(db.get('calendar')
-        .filter(item => {
-            console.log(new Date(item.day).getMonth())
-            if (new Date().getMonth === new Date(item.day).getMonth()) {
+    // res.send(db.get('calendar')
+    //     .filter(item => {
+    //         console.log(new Date(item.day).getMonth())
+    //         if (new Date().getMonth === new Date(item.day).getMonth()) {
 
-            }
-        })
-        .value());
+    //         }
+    //     })
+    //     .value());
 })
 
 app.get('/api/zone/off/:zone', (req, res) => {
