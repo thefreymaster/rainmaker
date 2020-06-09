@@ -8,9 +8,12 @@ import { isMobile } from 'react-device-detect';
 import { Calendar } from './components/Zones/Calendar';
 import Details from './components/Details';
 
+import Container from './common/DZContainer';
+import Flex from './common/DZFlex';
+
 const { Header, Footer, Content } = Layout;
 
-export const GREEN = "#5f8b63";
+export const GREEN = "#38d67c";
 
 
 function App() {
@@ -42,38 +45,40 @@ function App() {
   })
 
   return (
-    <Layout>
-      <Header>
-        <div style={{ display: "flex", flexDirection: "row", justifyContent: isMobile ? "center" : "flex-start", alignItems: "center" }}>
-          <FontAwesomeIcon color="white" icon={faFaucet} />
-          <div style={{ color: "white", fontWeight: 900, marginLeft: 10 }}>Rain Maker</div>
-          <div style={{ flexGrow: 1 }} />
-          <Button style={{ color: 'white' }} type="link" onClick={() => setOpen(!open)} icon={<FontAwesomeIcon icon={faBars} />} />
-        </div>
-      </Header>
-      <Layout>
-        <Content>
+    <Container backgroundColor="#353535">
+      <Flex width="20%">
+        <Flex width="100%" margin="30px 30px 30px 30px" borderRadius backgroundColor={GREEN}>
+          Drizzle
+        </Flex>
+      </Flex>
+      <Flex width="80%">
+        <Flex height="100%" width="33%" margin="30px 30px 30px 0px" direction="column">
+          <Flex height="100px" width="100%" backgroundColor={GREEN}>
+            USAGE GAL
+          </Flex>
+          <Flex height="calc(50% - 110px)" width="100%" margin="30px 30px 30px 0px" backgroundColor={GREEN}>
 
-          <div className="zones-container" style={inline.zones}>
-            <Zones />
-          </div>
-          {!isMobile &&
-            <Calendar />
-          }
+          </Flex>
+          <Flex height="calc(50% - 110px)" width="100%" margin="0px 30px 0px 0px" backgroundColor={GREEN}>
 
-          <Details
-            open={open}
-            setOpen={setOpen}
-          />
-        </Content>
-      </Layout>
-      <Footer>
-        <div style={{ display: "flex", justifyContent: "center", fontSize: 11, color: "#b4b6ba" }}>
-          Canvas 23 Studios
-        </div>
-      </Footer>
-    </Layout>
+          </Flex>
+        </Flex>
+        <Flex height="100%" width="66%" margin="30px 30px 30px 0px" direction="column">
+          <Flex direction="row">
+            <Flex height="100px" width="50%" margin="0px 30px 30px 0px" backgroundColor={GREEN}>
+              USAGE HR
+            </Flex>
+            <Flex height="100px" width="50%" margin="0px 0px 30px 0px" backgroundColor={GREEN}>
+              USAGE %/MONTH
+            </Flex>
+          </Flex>
+          <Flex height="calc(100% - 190px)" width="100%" margin="0px 30px 30px 0px" backgroundColor={GREEN}>
+            USAGE %/MONTH
+          </Flex>
+        </Flex>
 
+      </Flex>
+    </Container>
   );
 }
 
