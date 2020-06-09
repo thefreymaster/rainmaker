@@ -6,6 +6,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@nivo/calendar": "^0.61.1",
+    "@nivo/heatmap": "^0.61.0",
+    "@nivo/line": "^0.61.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
@@ -13,6 +16,7 @@
     "axios": "^0.19.2",
     "express": "^4.17.1",
     "gpio": "^0.2.10",
+    "lodash": "^4.17.15",
     "lowdb": "^1.0.0",
     "react": "^16.12.0",
     "react-device-detect": "^1.12.0",
@@ -44,5 +48,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:6700/"
+  "proxy": "http://192.168.124.69:6700/"
 }

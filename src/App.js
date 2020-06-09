@@ -1,24 +1,40 @@
-import React, { useLayoutEffect, useState } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import { getZones } from './api/rest';
 import Zones from "./components/Zones";
-import io from 'socket.io-client';
-import { Layout } from 'antd';
+import { Layout, Button } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faWater, faShower } from '@fortawesome/free-solid-svg-icons'
+import { faShower, faHamburger, faBars, faFaucet } from '@fortawesome/free-solid-svg-icons'
 import { isMobile } from 'react-device-detect';
+import { Calendar } from './components/Zones/Calendar';
+import Details from './components/Details';
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Footer, Content } = Layout;
+
+export const GREEN = "#5f8b63";
 
 
 function App() {
-  const [height, setHeight] = React.useState(window.innerHeight - 129)
+  const [height, setHeight] = React.useState(window.innerHeight);
+  const [open, setOpen] = React.useState(false);
   const inline = {
     zones: {
-      height: height,
-      flexWrap: "wrap"
-    }
+      width: '100%',
+      flexWrap: 'wrap',
+      paddingTop: 20,
+      paddingRight: 20,
+    },
+    calendar: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+      title: {
+        position: 'relative',
+        top: 20,
+        fontWeight: 500
+      }
+    },
   }
 
   window.addEventListener('resize', () => {
@@ -29,15 +45,26 @@ function App() {
     <Layout>
       <Header>
         <div style={{ display: "flex", flexDirection: "row", justifyContent: isMobile ? "center" : "flex-start", alignItems: "center" }}>
-          <FontAwesomeIcon color="white" icon={faShower} />
+          <FontAwesomeIcon color="white" icon={faFaucet} />
           <div style={{ color: "white", fontWeight: 900, marginLeft: 10 }}>Rain Maker</div>
+          <div style={{ flexGrow: 1 }} />
+          <Button style={{ color: 'white' }} type="link" onClick={() => setOpen(!open)} icon={<FontAwesomeIcon icon={faBars} />} />
         </div>
       </Header>
       <Layout>
         <Content>
+
           <div className="zones-container" style={inline.zones}>
             <Zones />
           </div>
+          {!isMobile &&
+            <Calendar />
+          }
+
+          <Details
+            open={open}
+            setOpen={setOpen}
+          />
         </Content>
       </Layout>
       <Footer>

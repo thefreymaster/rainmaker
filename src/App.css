@@ -2,3 +2,40 @@
   display: flex;
   flex-direction: row;
 }
+
+.calendar-container{
+  background-color: #e2e2e2
+}
+
+.calendar-container div{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.ant-layout-header{
+  background-color: #5f8b63 !important;
+}
+
+.ant-switch-checked {
+  background-color: #5f8a63 !important;
+}
+
+.ant-layout-footer {
+  background: #ffffff !important;
+}
+.ant-card{
+  min-height: 100% !important
+}
+.ant-card-meta{
+  display: flex;
+  align-items: center;
+}
+.ant-tag-success {
+  color: #ffffff;
+  background: #5f8a63;
+  border-color: #5f8a63;
+}
+.ant-card-meta-avatar{
+  display: none;
+}

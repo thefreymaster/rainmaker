@@ -1,4 +1,29 @@
 {
+  "0": {
+    "name": "Front Yard Center",
+    "zone": "1",
+    "active": false,
+    "uptime": null
+  },
+  "1": {
+    "name": "Front Yard Right",
+    "zone": "2",
+    "active": false,
+    "uptime": null
+  },
+  "2": {
+    "name": "Backyard",
+    "zone": "4",
+    "active": false,
+    "uptime": null
+  },
+  "3": {
+    "name": "Front Yard Flower Beds",
+    "zone": "5",
+    "active": false,
+    "uptime": null
+  },
+  "4": "s",
   "zones": [
     {
       "name": "Front Yard Center",
@@ -13,12 +38,6 @@
       "uptime": null
     },
     {
-      "name": "Flower Beds",
-      "zone": "3",
-      "active": false,
-      "uptime": null
-    },
-    {
       "name": "Backyard",
       "zone": "4",
       "active": false,
@@ -29,6 +48,36 @@
       "zone": "5",
       "active": false,
       "uptime": null
+    }
+  ],
+  "calendar": [
+    {
+      "day": "2020-05-03",
+      "value": 1
+    },
+    {
+      "day": "2020-05-05",
+      "value": 1
+    },
+    {
+      "day": "2020-05-05",
+      "value": 1
+    },
+    {
+      "day": "2020-05-05",
+      "value": 1
+    },
+    {
+      "day": "2020-05-06",
+      "value": 1
+    },
+    {
+      "day": "2020-05-06",
+      "value": 1
+    },
+    {
+      "day": "2020-05-06",
+      "value": 1
     }
   ],
   "system": {
